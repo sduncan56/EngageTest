@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="EngageTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EngageTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:EngageTest.ViewModels"
+    xmlns:converters="using:EngageTest.Converters"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local1:DisplayerViewModel x:Key="DisplayerViewModel"/>
+
+        <converters:SpanConverter x:Key="SpanConverter"/>
+        <converters:FilepathConverter x:Key="FilepathConverter"/>
+
+    </Page.Resources>
+
+    <Grid DataContext="{StaticResource DisplayerViewModel}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" 
+                   Grid.RowSpan="{Binding PhotosCount, Converter={StaticResource SpanConverter}, ConverterParameter=1}"
+                   Source="{Binding Photos, Converter={StaticResource FilepathConverter}, ConverterParameter=1}"
+                   />
+        </Grid>
+        <ListView>
+            
+        </ListView>
+
+        <StackPanel  Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Cats" Command="{Binding CatsPressedCommand}"/>
+            <Button Content="Dogs"/>
+            <Button Content="Babies"/>
+        </StackPanel>
+
+
+    </Grid>
+</Page>
