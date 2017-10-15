@@ -39,6 +39,8 @@ namespace EngageTest.ViewModels
         public DisplayerViewModel()
         {
             PicturesChangeCommand = new DelegateCommand<string>(ChangePictures);
+
+            ChangePictures("cats");
         }
 
 
