@@ -11,6 +11,14 @@
     <Page.Resources>
         <local1:DisplayerViewModel x:Key="DisplayerViewModel"/>
 
+        <Style TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Grid.RowSpan" Value="1"/>
+            <Setter Property="Grid.ColumnSpan" Value="1"/>
+        </Style>
+
 
     </Page.Resources>
 
@@ -34,7 +42,7 @@
             <Image Grid.Row="0" Grid.Column="0" 
                    Grid.RowSpan="{Binding Image1RowSpan}"
                    Grid.ColumnSpan="{Binding Image1ColumnSpan}"
-                   Source="{Binding Image1Source}" HorizontalAlignment="Left"  Stretch="Fill"
+                   Source="{Binding Image1Source}" 
                    />
             <Image Grid.Row="0" Grid.Column="1"
                    Grid.RowSpan="{Binding Image2RowSpan}"
@@ -45,7 +53,27 @@
                    Grid.RowSpan="{Binding Image3RowSpan}"
                    Grid.ColumnSpan="{Binding Image3ColumnSpan}"
                    Source="{Binding Image3Source, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill"
+              
+                   />
+            <Image Grid.Row="1" Grid.Column="0" 
+                   Source="{Binding Image4Source}" 
+                   />
+            <Image Grid.Row="1" Grid.Column="1" 
+                   Source="{Binding Image5Source}" 
+                   />
+            <Image Grid.Row="1" Grid.Column="2" 
+                   Source="{Binding Image6Source}" 
+                   />
+            <Image Grid.Row="2" Grid.Column="0" 
+                   Grid.ColumnSpan="{Binding Image7ColumnSpan}"
+                   Source="{Binding Image7Source}" 
+                   />
+            <Image Grid.Row="2" Grid.Column="1" 
+                   Grid.ColumnSpan="{Binding Image8ColumnSpan}"
+                   Source="{Binding Image8Source}" 
+                   />
+            <Image Grid.Row="2" Grid.Column="2" 
+                   Source="{Binding Image9Source}" 
                    />
         </Grid>
 

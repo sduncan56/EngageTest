@@ -12,7 +12,6 @@ namespace EngageTest.Models
         {
             List<string> fileNames = new List<string>(System.IO.Directory.EnumerateFiles("Assets/"+folderName));
 
-
             return fileNames;
         }
     }

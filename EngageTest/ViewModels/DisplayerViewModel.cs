@@ -19,9 +19,15 @@ namespace EngageTest.ViewModels
         private Dictionary<int, int[]> _configurations = new Dictionary<int, int[]>
         {
             {0, new int[]{} },
-            {1, new int[]{0} },
-            {2, new int[]{0,2 } },
-            {3, new int[]{0,3,8 } }
+            {1, new int[]{1} },
+            {2, new int[]{1,3 } },
+            {3, new int[]{1,3,9 } },
+            {4, new int[]{1,3,6,9} },
+            {5, new int[]{1,3,6,9,7} },
+            {6, new int[]{1,3,6,9,7,8} },
+            {7, new int[]{1,2,3,4,5,7,8} },
+            {8, new int[]{1,2,3,4,5,6,7,8} },
+            {9, new int[]{1,2,3,4,5,6,7,8,9} }
         };
 
 
@@ -50,15 +56,38 @@ namespace EngageTest.ViewModels
             RaisePropertyChanged("Image2ColumnSpan");
             RaisePropertyChanged("Image2Source");
             RaisePropertyChanged("Image3Source");
+            RaisePropertyChanged("Image4Source");
+
+            RaisePropertyChanged("Image5Source");
+            RaisePropertyChanged("Image6Source");
+            RaisePropertyChanged("Image7Source");
+            RaisePropertyChanged("Image8Source");
+            RaisePropertyChanged("Image9Source");
+
 
             RaisePropertyChanged("Image3RowSpan");
             RaisePropertyChanged("Image3ColumnSpan");
+            RaisePropertyChanged("Image7ColumnSpan");
+            RaisePropertyChanged("Image8ColumnSpan");
 
         }
 
         public List<string> Photos { get { return _photos; } }
 
         public int Image1RowSpan
+        {
+            get
+            {
+                if (Photos.Count <= 4)
+                    return 3;
+                else if (Photos.Count == 5 || Photos.Count == 6)
+                    return 2;
+                return 1;
+       
+            }
+        }
+
+        public int Image1ColumnSpan
         {
             get
             {
@@ -70,19 +99,7 @@ namespace EngageTest.ViewModels
             }
         }
 
-        public int Image1ColumnSpan
-        {
-            get
-            {
-                if (Photos.Count <= 4)
-                    return 3;
-                else if (Photos.Count == 5 || Photos.Count == 6)
-                    return 2;
-                return 1;
-            }
-        }
-
-        public string GetSource(int imageNumber)
+        public BitmapImage GetSource(int imageNumber)
         {
             int[] indexArray = _configurations[Photos.Count];
 
@@ -93,7 +110,14 @@ namespace EngageTest.ViewModels
             if (index >= 0)
                 filename = Photos[index];
 
-            return filename;
+            BitmapImage image = null;
+            if (!string.IsNullOrEmpty(filename))
+            {
+                image = new BitmapImage(new Uri("ms-appx://EngageTest/" + filename));
+
+            }
+
+            return image;
         }
 
 
@@ -117,36 +141,7 @@ namespace EngageTest.ViewModels
             }
         }
 
-        public BitmapImage Image1Source
-        {
-            get
-            {
-                BitmapImage image = null;
-                string filename = GetSource(0);
-                if (!string.IsNullOrEmpty(filename))
-                {
-                    image = new BitmapImage(new Uri("ms-appx://EngageTest/" + filename));
-
-                }
-                return image;
-            }
-        }
-
-        public BitmapImage Image2Source
-        {
-            get
-            {
-                BitmapImage image = null;
-                string filename = GetSource(1);
-                if (!string.IsNullOrEmpty(filename))
-                {
-                    image = new BitmapImage(new Uri("ms-appx://EngageTest/" + filename));
-
-                }
-                return image;
-            }
-        }
-
+  
 
 
         public int Image3RowSpan { get
@@ -163,27 +158,112 @@ namespace EngageTest.ViewModels
         public int Image3ColumnSpan {
             get
             {
-                if (PhotosCount == 2)
-                    return 3;
-                if (PhotosCount < 2)
-                    return 0;
                 return 1;
             } }
+
+        public int Image7ColumnSpan
+        {
+            get
+            {
+                if (PhotosCount == 5)
+                    return 2;
+                return 1;
+            }
+        }
+
+        public int Image8ColumnSpan
+        {
+            get
+            {
+                if (PhotosCount == 8)
+                    return 2;
+                return 1;
+            }
+        }
+
+        public BitmapImage Image1Source
+        {
+            get
+            {
+                return GetSource(1);
+            }
+        }
+
+        public BitmapImage Image2Source
+        {
+            get
+            {
+                return GetSource(2);
+            }
+        }
+
 
         public BitmapImage Image3Source
         {
             get
             {
-                BitmapImage image = null;
-                string filename = GetSource(2);
-                if (!string.IsNullOrEmpty(filename))
-                {
-                    image = new BitmapImage(new Uri("ms-appx://EngageTest/" + filename));
-
-                }
-                return image;
+                return GetSource(3);
             }
         }
+
+
+        public BitmapImage Image4Source
+        {
+
+            get
+            {
+                return GetSource(4);
+
+            }
+        }
+
+
+        public BitmapImage Image5Source
+        {
+
+            get
+            {
+                return GetSource(5);
+
+            }
+        }
+        public BitmapImage Image6Source
+        {
+
+            get
+            {
+                return GetSource(6);
+
+            }
+        }
+        public BitmapImage Image7Source
+        {
+
+            get
+            {
+                return GetSource(7);
+
+            }
+        }
+        public BitmapImage Image8Source
+        {
+
+            get
+            {
+                return GetSource(8);
+
+            }
+        }
+        public BitmapImage Image9Source
+        {
+
+            get
+            {
+                return GetSource(9);
+
+            }
+        }
+
 
         public int PhotosCount
         {
