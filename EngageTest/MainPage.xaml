@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local1="using:EngageTest.ViewModels"
-    xmlns:converters="using:EngageTest.Converters"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
         <local1:DisplayerViewModel x:Key="DisplayerViewModel"/>
@@ -17,6 +17,15 @@
             <Setter Property="Stretch" Value="Fill"/>
             <Setter Property="Grid.RowSpan" Value="1"/>
             <Setter Property="Grid.ColumnSpan" Value="1"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Margin" Value="30,0,30,0"/>
+            <Setter Property="Padding" Value="20, 0, 20, 0"/>
+            <Setter Property="Foreground" Value="White"/>
+
         </Style>
 
 
@@ -27,7 +36,7 @@
             <RowDefinition Height="0.9*"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" BorderThickness="1" BorderBrush="Lime">
+        <Grid Grid.Row="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition/>
@@ -78,10 +87,10 @@
         </Grid>
 
 
-        <StackPanel  Orientation="Horizontal" Grid.Row="1">
-            <Button Content="Cats" Command="{Binding CatsPressedCommand}"/>
-            <Button Content="Dogs"/>
-            <Button Content="Babies"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Cats" Command="{Binding PicturesChangeCommand}" CommandParameter="cats"/>
+            <Button Content="Dogs" Command="{Binding PicturesChangeCommand}" CommandParameter="dogs"/>
+            <Button Content="Babies" Command="{Binding PicturesChangeCommand}" CommandParameter="babies"/>
         </StackPanel>
 
 

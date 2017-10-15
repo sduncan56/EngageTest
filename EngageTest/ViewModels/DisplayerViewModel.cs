@@ -31,20 +31,20 @@ namespace EngageTest.ViewModels
         };
 
 
-        public ICommand CatsPressedCommand
+        public ICommand PicturesChangeCommand
         {
             protected set; get;
         }
 
         public DisplayerViewModel()
         {
-            CatsPressedCommand = new DelegateCommand(CatsPressed);
+            PicturesChangeCommand = new DelegateCommand<string>(ChangePictures);
         }
 
 
-        private void CatsPressed()
+        private void ChangePictures(string type)
         {
-            _photos = Models.ImageLoader.GetImageNames("cats");
+            _photos = Models.ImageLoader.GetImageNames(type);
             RaisePropertyChanged("PhotosCount");
 
             RaisePropertyChanged("Photos");
