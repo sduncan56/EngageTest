@@ -9,13 +9,30 @@ namespace EngageTest.Converters
 {
     class FilepathConverter : IValueConverter
     {
+        private int[] twoContains = {0, 2};
+        private Dictionary<int, int[]> configurations = new Dictionary<int, int[]>
+        {
+            {0, new int[]{} },
+            {1, new int[]{0} },
+            {2, new int[]{0,3 } },
+            {3, new int[]{0,3,8 } }
+        };
+
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            int index = Int32.Parse(parameter.ToString()) - 1;
+            int imageNumber = Int32.Parse(parameter.ToString());
 
             List<string> filenames = (List<string>)value;
+
+
+            int[] indexArray = configurations[filenames.Count];
+
             string filename = "";
-            if (index < filenames.Count)
+
+            int index = Array.IndexOf(indexArray, imageNumber);
+
+            if (index >= 0)
                 filename = filenames[index];
 
             return filename;

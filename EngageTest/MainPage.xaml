@@ -11,8 +11,6 @@
     <Page.Resources>
         <local1:DisplayerViewModel x:Key="DisplayerViewModel"/>
 
-        <converters:SpanConverter x:Key="SpanConverter"/>
-        <converters:FilepathConverter x:Key="FilepathConverter"/>
 
     </Page.Resources>
 
@@ -21,7 +19,7 @@
             <RowDefinition Height="0.9*"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" BorderThickness="1" BorderBrush="Lime">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition/>
@@ -34,13 +32,23 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Row="0" Grid.Column="0" 
-                   Grid.RowSpan="{Binding PhotosCount, Converter={StaticResource SpanConverter}, ConverterParameter=1}"
-                   Source="{Binding Photos, Converter={StaticResource FilepathConverter}, ConverterParameter=1}"
+                   Grid.RowSpan="{Binding Image1RowSpan}"
+                   Grid.ColumnSpan="{Binding Image1ColumnSpan}"
+                   Source="{Binding Image1Source}" HorizontalAlignment="Left"  Stretch="Fill"
+                   />
+            <Image Grid.Row="0" Grid.Column="1"
+                   Grid.RowSpan="{Binding Image2RowSpan}"
+                   Grid.ColumnSpan="{Binding Image2ColumnSpan}"
+                   Source="{Binding Image2Source}"/>
+
+            <Image Grid.Row="0" Grid.Column="2"
+                   Grid.RowSpan="{Binding Image3RowSpan}"
+                   Grid.ColumnSpan="{Binding Image3ColumnSpan}"
+                   Source="{Binding Image3Source, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill"
                    />
         </Grid>
-        <ListView>
-            
-        </ListView>
+
 
         <StackPanel  Orientation="Horizontal" Grid.Row="1">
             <Button Content="Cats" Command="{Binding CatsPressedCommand}"/>
