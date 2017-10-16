@@ -15,6 +15,7 @@ namespace EngageTest.ViewModels
     class DisplayerViewModel : BindableBase
     {
         private List<string> _photos = new List<string>();
+        private BitmapImage _selectedImageSource;
 
         private Dictionary<int, int[]> _configurations = new Dictionary<int, int[]>
         {
@@ -36,13 +37,27 @@ namespace EngageTest.ViewModels
             protected set; get;
         }
 
+        public ICommand ImageClickedCommand { protected set; get; }
+
+        public ICommand CloseImageCommand { protected set; get; }
+
         public DisplayerViewModel()
         {
             PicturesChangeCommand = new DelegateCommand<string>(ChangePictures);
-
+            ImageClickedCommand = new DelegateCommand<string>(ImageClicked);
+            CloseImageCommand = new DelegateCommand(CloseImage);
             ChangePictures("cats");
         }
 
+        private void CloseImage()
+        {
+            SelectedImageSource = null;
+        }
+
+        private void ImageClicked(string imageNumber)
+        {
+            SelectedImageSource = GetSource(Int32.Parse(imageNumber));
+        }
 
         private void ChangePictures(string type)
         {
@@ -263,6 +278,19 @@ namespace EngageTest.ViewModels
             {
                 return GetSource(9);
 
+            }
+        }
+
+        public BitmapImage SelectedImageSource
+        {
+            get
+            {
+                return _selectedImageSource;
+            }
+            set
+            {
+                _selectedImageSource = value;
+                RaisePropertyChanged("SelectedImageSource");
             }
         }
 
